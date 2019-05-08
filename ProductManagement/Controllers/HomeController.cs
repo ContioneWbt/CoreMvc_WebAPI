@@ -21,6 +21,7 @@ namespace ProductManagement.Controllers
         private readonly AppManger _app;
 
         private IRepository<UserNO> _UserNO;
+
         public HomeController(ICate payCate, IRepository<UserInfo> repository, IRepository<UserNO> userno, AppManger app)
         {
             _payCate = payCate;
@@ -28,6 +29,7 @@ namespace ProductManagement.Controllers
             _UserNO = userno;
             _app = app;
         }
+
         public IActionResult Index()
         {
             _payCate.Show();
@@ -53,14 +55,17 @@ namespace ProductManagement.Controllers
 
             return View();
         }
+
         public IActionResult Console()
         {
             return View();
         }
+
         public IActionResult Content_Add()
         {
             return View();
         }
+
         public IActionResult MenuCheck()
         {
             return View();
@@ -72,9 +77,8 @@ namespace ProductManagement.Controllers
         /// <returns></returns>
         public JsonResult GetTree()
         {
-            SpanningTree modle = new SpanningTree();
-            var m = JsonConvert.SerializeObject(modle.CreateMenuTree());
-            return Json(new { code = 1, msg = "success", data = modle.CreateMenuTree() });
+            var m = JsonConvert.SerializeObject(SpanningTree.CreateMenuTree());
+            return Json(new { code = 1, msg = "success", data = SpanningTree.CreateMenuTree() });
         }
 
         public IActionResult Menuedit()

@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace ProductManagement.Models
 {
-    public class SpanningTree
+    public static class SpanningTree
     {
         /// <summary>
         /// 获取菜单树结构
         /// </summary>
         /// <returns></returns>
-        public List<NodelModel> CreateMenuTree()
+        public static List<NodelModel> CreateMenuTree()
         {
             List<NodelModel> rootNodeList = new List<NodelModel>();
 
@@ -43,7 +43,7 @@ namespace ProductManagement.Models
         /// <param name="AllMenuList"></param>
         /// <param name="vmMenu"></param>
         /// <returns></returns>
-        public List<NodelModel> CreateChildTree(List<NodelModel> alllist, NodelModel menu)
+        private static List<NodelModel> CreateChildTree(List<NodelModel> alllist, NodelModel menu)
         {
             int parentMenuID = menu.id;//根节点ID
             List<NodelModel> nodeList = new List<NodelModel>();
@@ -71,7 +71,7 @@ namespace ProductManagement.Models
         /// init tree find top menu
         /// </summary>
         /// <returns></returns>
-        private List<NodelModel> InitTree()
+        private static List<NodelModel> InitTree()
         {
             List<NodelModel> model = GetlistTree();
 
@@ -82,7 +82,7 @@ namespace ProductManagement.Models
         /// 菜单数据模拟
         /// </summary>
         /// <returns></returns>
-        public List<NodelModel> GetlistTree()
+        private static List<NodelModel> GetlistTree()
         {
             List<NodelModel> list = new List<NodelModel>()
             {
