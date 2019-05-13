@@ -1,0 +1,297 @@
+﻿
+@{
+    ViewBag.Title = "SingletonPattern";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@section styles{
+    <!-- 比较好用的代码着色插件 -->
+    <link href="/css/prettify.css" rel="stylesheet" />
+    <!-- 本页样式表 -->
+    <link href="/css/detail.css" rel="stylesheet" />
+    <link href="/APlayer/dist/APlayer.min.css" rel="stylesheet" />
+}
+<!-- APlayer -->
+<script src="/APlayer/dist/APlayer.min.js"></script>
+<!-- 导航 -->
+@Html.Partial("_Title", "文章专栏")
+<!-- 主体（一般只改变这里的内容） -->
+<div class="blog-body">
+    <div class="blog-container">
+        <blockquote class="layui-elem-quote sitemap layui-breadcrumb shadow">
+            <a href="/Home/index" title="网站首页">网站首页</a>
+            <a href="/Article/Index" title="文章专栏">文章专栏</a>
+            <a><cite>【创建型设计模式-SingletonPattern单例模式】</cite></a>
+        </blockquote>
+        <div class="blog-main" style=" margin-top: 15px;">
+            <div class="blog-main-left">
+                <!-- 文章内容（使用Kingeditor富文本编辑器发表的） -->
+                <div class="article-detail shadow">
+                    <div class="article-detail-title">
+                        关于         【创建型设计模式-SingletonPattern单例模式】那些事
+                    </div>
+                    <div class="article-detail-info">
+                        <span>编辑时间：2018/6/25 10:30:22</span>
+                        <span>作者：Contione</span>
+                        <span>浏览量：12+</span>
+                    </div>
+                    <div class="article-detail-content">
+                        @*<p style="text-align:center;">
+                    <strong><span style="font-size:18px;">小赌为快</span></strong>
+                </p>
+                <p style="text-align:center;">
+                    <strong>
+                        <span style="font-size:18px;">
+                            <br />
+                        </span>
+                    </strong>
+                </p>*@
+                        @*<p style="text-align:center;">
+                    <img src="/Article/正则.png" width="100%" height="auto" title="pagesize演示" alt="pagesize演示" />
+                </p>*@
+                        <p style="text-align:left;">
+                            <br />
+                        </p>
+                        <hr />
+                        <p>
+                            <br />
+                        </p>
+                        <div style="text-align:center;">
+                            &nbsp; &nbsp; <span style="color:#EE33EE;">前言</span>：如果你还没有了解创建型设计模式赶紧看看吧！
+                        </div>
+                        <hr />
+                        <p>
+                            &nbsp; &nbsp; <span style="color:#EE33EE;">方法一：</span>
+                        </p>
+                        <hr />
+                        <p>
+                            &nbsp; &nbsp; 【一个静态的对象创建方法】
+                        </p>
+                        <pre class="prettyprint linenums lang-js">
+    public class Singleton
+    {
+        private Singleton()
+        {
+            Thread.Sleep(1000);//耗时
+            string bigSize = "占用10M内存";//耗计算资源
+            string resource = "占用多个线程和数据库连接资源";//耗有限资源
+            Console.WriteLine("{0}被构造，线程id={1}", this.GetType().Name, 
+                                       Thread.CurrentThread.ManagedThreadId);
+        }
+        private static Singleton _Singleton = null;
+
+        private static object Singleton_Lock = new object();
+
+        public static Singleton CreateInstance()
+        {
+            if (_Singleton == null)//保证对象初始化之后的所有线程，不需要等待锁
+            {
+                Console.WriteLine("准备进入lock");
+                lock (Singleton_Lock)//保证只有一个线程进去判断
+                {
+                    //Thread.Sleep(1000);
+                    if (_Singleton == null)//保证对象为空才真的创建
+                    {
+                        _Singleton = new Singleton();
+                    }
+                }
+            }
+            return _Singleton;
+        }
+
+        public void Show()
+        {
+            Console.WriteLine("这里调用了{0}.Show", this.GetType().Name);
+        }
+    }
+                        </pre>
+
+                        <p>
+                            &nbsp; &nbsp; <span style="color:#EE33EE;">方法二：</span>
+                        </p>
+                        <hr />
+                        <p>
+                            &nbsp; &nbsp; 【私有化构造函数】
+                        </p>
+                        <pre class="prettyprint linenums lang-js">
+    public class SingletonSecond
+    {
+        private SingletonSecond()
+        {
+            Thread.Sleep(1000);//耗时
+            string bigSize = "占用10M内存";//耗计算资源
+            string resource = "占用多个线程和数据库连接资源";//耗有限资源
+            Console.WriteLine("{0}被构造，线程id={1}", this.GetType().Name, 
+                                       Thread.CurrentThread.ManagedThreadId);
+        }
+        private static SingletonSecond _Singleton = null;
+
+         // 静态构造函数：由CLR保证，在第一次使用这个类之前，调用而且只调用一次
+        static SingletonSecond()
+        {
+            _Singleton = new SingletonSecond();
+        }
+
+        public static SingletonSecond CreateInstance()
+        {
+            return _Singleton;
+        }
+
+        public void Show()
+        {
+            Console.WriteLine("这里调用了{0}.Show", this.GetType().Name);
+        }
+    }
+                        </pre>
+                        <p>
+                            &nbsp; &nbsp; <span style="color:#EE33EE;">方法三：</span>
+                        </p>
+                        <hr />
+                        <p>
+                            &nbsp; &nbsp; 【静态变量】
+                        </p>
+                        <pre class="prettyprint linenums lang-js">
+    public class SingletonThird
+    {
+        private SingletonThird()
+        {
+            Thread.Sleep(1000);//耗时
+            string bigSize = "占用10M内存";//耗计算资源
+            string resource = "占用多个线程和数据库连接资源";//耗有限资源
+            Console.WriteLine("{0}被构造，线程id={1}", this.GetType().Name,
+                                       Thread.CurrentThread.ManagedThreadId);
+        }
+       
+        // 静态变量：会在类型第一次使用的时候初始化，而且只初始化一次
+        private static SingletonThird _Singleton = new SingletonThird();
+
+        public static SingletonThird CreateInstance()
+        {
+            return _Singleton;
+        }
+        public void Show()
+        {
+            Console.WriteLine("这里调用了{0}.Show", this.GetType().Name);
+        }
+    }
+                        </pre>
+
+                        <hr />
+                        <pre class="prettyprint linenums lang-js">
+      static void Main(string[] args)
+        {
+            try
+            {
+                List<IAsyncResult> resultList = new List<IAsyncResult>();
+                resultList.Add(new Action(() =>
+                {
+                    Singleton sin = Singleton.CreateInstance();
+                    sin.Show();
+                }).BeginInvoke(null,null));
+                        <hr />
+                for (int i = 0; i < 10; i++)
+                {
+                   resultList.Add( new Action(() =>
+                    {
+                        Singleton singleton = Singleton.CreateInstance();
+                        singleton.Show();
+                    }).BeginInvoke(null, null));//会启动一个异步多线程调用
+                }
+                        <hr />
+                while (resultList.Count(r => !r.IsCompleted) > 0)
+                {
+                    Thread.Sleep(10);
+                }
+                        <hr />
+
+                for (int i = 0; i < 10; i++)
+                {
+                    resultList.Add(new Action(() =>
+                    {
+                        SingletonSecond singleton = SingletonSecond.CreateInstance();
+                        singleton.Show();
+                    }).BeginInvoke(null, null));//会启动一个异步多线程调用
+                }
+                        <hr />
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.Read();
+        }
+                        </pre>
+                        &nbsp;&nbsp; &nbsp;<span style="color:#EE33EE;">今天就分享到这里啦！</span>
+                        <p>
+                            &nbsp; &nbsp; 点赞Contione：<a href="" target="_blank"><span style="color:#337FE5;">点击前往</span></a>@*&nbsp; &nbsp; 完整演示请看后台：<span><a href="" target="_blank"><span style="color:#337FE5;">点击前往</span></a></span>&nbsp; &nbsp; 下载地址：<a href="https://pan.baidu.com/s/1kVK8UhT" target="_blank"><span style="color:#337FE5;">点击前往</span></a>*@
+                        </p>
+                        <hr />
+                        &nbsp; &nbsp; 出自：Contione
+                        <p>
+                            &nbsp; &nbsp; 地址：<a href="http://www.contione.cn" target="_blank">www.contione.cn</a>
+                        </p>
+                        <p>
+                            &nbsp; &nbsp; 转载请注明出处！<img src="" border="0" alt="" />@*http://www.lyblogs.cn/kindeditor/plugins/emoticons/images/0.gif*@
+                        </p>
+                        <p>
+                            <br />
+                        </p>
+                    </div>
+                </div>
+                <!-- 本文配乐 -->
+                <div class="blog-module shadow article-music">
+                    <div class="blog-module-title"><span class="layui-badge">本文配乐</span></div>
+                    <div id="musicplayer" class="aplayer"></div>
+                </div>
+                <!-- 评论区域 -->
+                <div class="blog-module shadow" style="box-shadow: 0 1px 8px #a6a6a6;">
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-bottom:0">
+                        <legend>来说两句吧</legend>
+                        <div class="layui-field-box">
+                            <form class="layui-form blog-editor" action="">
+                                <div class="layui-form-item">
+                                    <textarea name="editorContent" lay-verify="content" id="remarkEditor" placeholder="请输入内容" class="layui-textarea layui-hide"></textarea>
+                                </div>
+                                <div class="layui-form-item">
+                                    <button class="layui-btn" lay-submit="formRemark" lay-filter="formRemark">提交评论</button>
+                                </div>
+                            </form>
+                        </div>
+                    </fieldset>
+                    <div class="blog-module-title">最新评论</div>
+                    <ul class="blog-comment">
+                        <li>
+                            <div class="comment-parent">
+                                <img src="/images/Absolutely.jpg" alt="absolutely" />
+                                <div class="info">
+                                    <span class="username">Contione</span>
+                                    <span class="time">2017-03-18 18:46:06</span>
+                                </div>
+                                <div class="content">
+                                    我为大家做了模拟评论功能！还有，这个评论功能也可以改成和留言一样，但是目前没改，有兴趣可以自己改
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @Html.Partial("_Right")
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<!--遮罩-->
+<div class="blog-mask animated layui-hide"></div>
+
+@section scripts{
+    <!-- 比较好用的代码着色插件 -->
+    <script src="/js/prettify.js"></script>
+    <!-- 本页脚本 -->
+    <script src="/js/detail.js"></script>
+    <!-- 播放音乐 -->
+    <script src="/APlayer/dist/custom.js"></script>
+}
+

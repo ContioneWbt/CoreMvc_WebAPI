@@ -1,0 +1,444 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@section styles{
+    <!-- 本页样式表 -->
+    <link href="/css/home.css" rel="stylesheet" />
+}
+<script src="/APlayer/dist/APlayer.min.js"></script>
+<link href="/APlayer/dist/APlayer.min.css" rel="stylesheet" />
+
+<!-- canvas -->
+@*<canvas id="canvas-banner" style="background: #393D49; " ></canvas>*@
+@*为了及时效果需要立即设置canvas宽高，否则就在home.js中设置*@
+@*<script type="text/javascript">
+        var canvas = document.getElementById('canvas-banner');
+        canvas.width = window.document.body.clientWidth - 10;//减去滚动条的宽度
+        if (screen.width >= 992) {
+            canvas.height = window.innerHeight * 1 / 3;
+        } else {
+            canvas.height = window.innerHeight * 2 / 7;
+        }
+    </script>*@
+<!-- 导航 -->
+@Html.Partial("_Title", "网站首页")
+<!-- 这个一般才是真正的主体内容 -->
+<div class="blog-container">
+    <div class="blog-main">
+        <!-- 网站公告提示 -->
+        <div class="home-tips shadow">
+            <i style="float:left;line-height:17px;" class="fa fa-volume-up"></i>
+            <div class="home-tips-container">
+                <span style="color: #009688">偷偷告诉大家，本博客的后台管理也正在制作，为大家准备了游客专用账号！</span>
+                <span style="color: red">网站新增留言回复啦！使用QQ登陆即可回复，人人都可以回复！</span>
+                <span style="color: red">如果你觉得网站做得还不错，来Fly社区点个赞吧！<a href="http://fly.layui.com/case/2018/" target="_blank" style="color:#01AAED">点我前往</a></span>
+                <span style="color: #009688">contione &nbsp;—— &nbsp;一个.NET程序员的个人博客，新版网站采用Layui为前端框架，目前正在建设中！</span>
+            </div>
+        </div>
+        <!--左边文章列表-->
+        <div class="blog-main-left">
+            <div class="article shadow">
+                <div class="article-left">
+                    <img src="/images/js/yxl.png" alt="js原型链！" />
+                </div>
+                <div class="article-right">
+                    <div class="article-title">
+                        <a href="/Article/SingletonPattern">【JS原型和原型链】 <span class="layui-badge layui-bg-green">推荐</span></a>
+                    </div>
+                    <div class="article-abstract">
+                        <p> JavaScript 中，万物皆对象！但对象也是有区别的。分为普通对象和函数对象，Object 、Function 是 JS 自带的函数对象 </p>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="article-footer">
+                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2018-05-23</span>
+                    <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;contione</span>
+                    <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Design Pattern</a></span>
+                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                    <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                </div>
+            </div>
+            <div class="article shadow">
+                <div class="article-left">
+                    <img src="/images/设计模式/Proxy.jpg" alt="创建型设计模式！" />
+                </div>
+                <div class="article-right">
+                    <div class="article-title">
+                        <a href="/Article/SingletonPattern">【创建型设计模式-SingletonPattern单例模式】</a>
+                    </div>
+                    <div class="article-abstract">
+                        <p> 1 简介：通过单例模式可以保证系统中一个类只有一个实例。即一个类只有一个对象实例【保证了整个进程中该对象只被实例化一次】 </p>
+                        <p><span style="color:red;"> 2 单例模式的三种写法：1.私有化构造函数 2.私有的静态变量 3.一个静态的对象创建方法</span></p>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="article-footer">
+                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2018-05-23</span>
+                    <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;contione</span>
+                    <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Design Pattern</a></span>
+                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                    <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                </div>
+            </div>
+            <div class="article shadow">
+                <div class="article-left">
+                    <img src="/images/设计模式/Proxy.jpg" alt="结构性设计模式！" />
+                </div>
+                <div class="article-right">
+                    <div class="article-title">
+                        <a href="/Article/ChainofResponsibility">【行为型模式-责任链Chain of Responsibility模式】</a>
+                    </div>
+                    <div class="article-abstract">
+                        <p> 1 简介：在业务逻辑处理过程中可能有很多环节，在这个环节中有的可能最终处理有的可能中途处理一点，为了保证环节可自由配置(定制)把每个环节独立成一个类，环节和环节自由传递，通过上端去指定它。</p>
+
+                        <p>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="article-footer">
+                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2018-05-23</span>
+                    <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;contione</span>
+                    <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Design Pattern</a></span>
+                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                    <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                </div>
+            </div>
+            <div class="article shadow">
+                <div class="article-left">
+                    <img src="/images/设计模式/Proxy.jpg" alt="结构性设计模式！" />
+                </div>
+                <div class="article-right">
+                    <div class="article-title">
+                        <a href="/Article/Proxy">【结构型模式-代理Proxy模式】</a>
+                    </div>
+                    <div class="article-abstract">
+                        <p> 1 简介：代理模式为其他对象提供一种代理以控制对这个对象的访问</p>
+                        <p>
+                            &nbsp;&nbsp;它侧重于增加间接层来简化复杂的问题
+                        </p>
+                        <p>
+                            <span style="color:red;"> 2 AOP：日志代理 延迟代理 权限代理 单例代理 缓存代理</span>
+                        </p>
+                        <p>
+                            3 封装：Webservice ORM
+                        </p>
+                        <p>
+                            4 适配器、装饰器的区别
+                        </p>
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="article-footer">
+                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2018-05-23</span>
+                    <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;contione</span>
+                    <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Design Pattern</a></span>
+                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                    <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                </div>
+            </div>
+            <div class="article shadow">
+                <div class="article-left">
+                    <img src="/Article/正则.png" alt="JS正则表达式！" />
+                </div>
+                <div class="article-right">
+                    <div class="article-title">
+                        <a href="/Article/Check">【Regex】JS正则表达式</a>
+                    </div>
+                    <div class="article-abstract">
+                        正则表达式，有木有人像我一样，学了好几遍却还是很懵圈，学的时候老明白了，学完了忘光了。好吧，其实还是练的不够，所谓温故而知新，可以为师矣，今天就随我来复习一下这傲娇的正则表达式吧。
+
+                        为啥要有正则表达式呢？其实就是因为计算机笨（这话不是我说的），比如123456@qq.com，我们一看就是邮箱，可是计算机不认识啊，所以我们就要用一些计算机认识的语言，来制定好规则，告诉它符合这个规则的就是个邮箱，这样计算机就能帮我们找到对应的东西了。所以正则就是用来设置规则，来完成我们需求的一些操作的，比如登录验证啦，搜索指定的东西啦等等，说太多都是多余，直接看正题吧。
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="article-footer">
+                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2018-05-23</span>
+                    <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;contione</span>
+                    <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">JavaScript</a></span>
+                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                    <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                </div>
+            </div>
+            @*<div id="layer-photos-demo" class="layer-photos-demo">
+                <img layer-pid="图片id，可以不写" layer-src="大图地址" src="缩略图" alt="图片名">
+                <img layer-pid="图片id，可以不写" layer-src="大图地址" src="缩略图" alt="图片名">
+            </div>*@
+            <div class="article shadow">
+                <div class="article-left">
+                    <img layer-pid="图片id，可以不写" layer-src="/images/cover/201703181909057125.jpg" src="/images/cover/201703181909057125.jpg" alt="泛型！">
+                </div>
+                <div class="article-right">
+                    <div class="article-title">
+                        <a href="/Detail/Index">【Generic】泛型</a>
+                    </div>
+                    <div class="article-abstract">
+                        泛型（generic）是C#语言2.0和通用语言运行时（CLR）的一个新特性。泛型为.NET框架引入了类型参数（type parameters）的概念。类型参数使得设计类和方法时，不必确定一个或多个具体参数，其的具体参数可延迟到客户代码中声明、实现。这意味着使用泛型的类型参数T，写一个类MyList<T>，客户代码可以这样调用：MyList<int>， MyList<string>或 MyList<MyClass>。这避免了运行时类型转换或装箱操作的代价和风险。
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="article-footer">
+                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2018-03-18</span>
+                    <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;contione</span>
+                    <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">C#</a></span>
+                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                    <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                </div>
+            </div>
+            <div class="article shadow">
+                <div class="article-left">
+                    <img src="/images/cover/201703181909057125.jpg" alt="反射！" />
+                </div>
+                <div class="article-right">
+                    <div class="article-title">
+                        <a href="/Detail/Index">【Reflection】反射</a>
+                    </div>
+                    <div class="article-abstract">
+                        反射是.NET中的重要机制，通过反射，可以在运行时获得程序或程序集中每一个类型（包括类、结构、委托、接口和枚举等）的成员和成员的信息。有了反射，即可对每一个类型了如指掌。另外我还可以直接创建对象，即使这个对象的类型在编译时还不知道。?
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="article-footer">
+                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2018-03-18</span>
+                    <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;contione</span>
+                    <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">C#</a></span>
+                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                    <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                </div>
+            </div>
+            <div class="article shadow">
+                <div class="article-left">
+                    <img src="/images/cover/201703181909057125.jpg" alt="特性【Arrtibute】！" />
+                </div>
+                <div class="article-right">
+                    <div class="article-title">
+                        <a href="/Detail/Index">【Arrtibute】特性！</a>
+                    </div>
+                    <div class="article-abstract">
+                        在不改变类型封装的前提下，额外添加功能
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="article-footer">
+                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2018-03-18</span>
+                    <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;contione</span>
+                    <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">C#</a></span>
+                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                    <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                </div>
+            </div>
+            <div class="article shadow">
+                <div class="article-left">
+                    <img src="/images/cover/201703181909057125.jpg" alt="委托！" />
+                </div>
+                <div class="article-right">
+                    <div class="article-title">
+                        <a href="/Detail/Index">【event】事件和【delegate】委托</a>
+                    </div>
+                    <div class="article-abstract">
+                        1 委托的声明、实例化和调用
+                        2 泛型委托--Func Action
+                        3 委托的意义：解耦
+                        4 委托的意义：异步多线程
+                        5 委托的意义：多播委托6 事件 观察者模式
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="article-footer">
+                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2018-03-18</span>
+                    <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;contione</span>
+                    <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">C#前端</a></span>
+                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                    <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                </div>
+            </div>
+            <div class="article shadow">
+                <div class="article-left">
+                    <img src="/images/cover/201703181909057125.jpg" alt="加密-解密！" />
+                </div>
+                <div class="article-right">
+                    <div class="article-title">
+                        <a href="/Detail/Index">【加密】-【解密】！</a>
+                    </div>
+                    <div class="article-abstract">
+                        1：MD5 不可逆加密
+                        2：Des对称可逆加密
+                        3：RSA非对称可逆加密
+                        4：数字证书 SSL
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="article-footer">
+                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2018-03-18</span>
+                    <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;contione</span>
+                    <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">C#</a></span>
+                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                    <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                </div>
+            </div>
+            <div class="article shadow">
+                <div class="article-left">
+                    <img src="/images/cover/201703181909057125.jpg" alt="【IO】-【序列化与反序列化】！" />
+                </div>
+                <div class="article-right">
+                    <div class="article-title">
+                        <a href="/Detail/Index">【IO】-【序列化与反序列化】！</a>
+                    </div>
+                    <div class="article-abstract">
+                        1 文件夹/文件 检查、新增、复制、移动、删除，
+                        2 文件读写，记录文本日志/读取配置文件
+                        3 递归的编程技巧
+                        4 三种序列化器
+                        5 xml和json
+                        6 验证码、图片缩放
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="article-footer">
+                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2018-03-18</span>
+                    <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;contione</span>
+                    <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">C#</a></span>
+                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                    <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                </div>
+            </div>
+            <div class="article shadow">
+                <div class="article-left">
+                    <img src="/images/cover/201703181909057125.jpg" alt="【Lambda】-【Linq】！" />
+                </div>
+                <div class="article-right">
+                    <div class="article-title">
+                        <a href="/Detail/Index">【Lambda】-【Linq】！</a>
+                    </div>
+                    <div class="article-abstract">
+                        1 委托简介
+                        2 匿名方法 匿名类
+                        3 lambda表达式 goes to
+                        4 系统自带委托Action/Func
+                        5 扩展方法
+                        6 linq扩展
+                        7 linq简单回顾
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="article-footer">
+                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2018-03-18</span>
+                    <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;contione</span>
+                    <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">C#</a></span>
+                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                    <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                </div>
+            </div>
+            <div class="article shadow">
+                <div class="article-left">
+                    <img src="/images/cover/201703181909057125.jpg" alt="基于laypage的layui扩展模块（pagesize.js）！" />
+                </div>
+                <div class="article-right">
+                    <div class="article-title">
+                        <a href="/Detail/Index">【Expression】表达式树</a>
+                    </div>
+                    <div class="article-abstract">
+                        1 表达式目录树
+                        2 动态拼装表达目录树和扩展应用
+                        3 解析表达式目录树，生成sql
+                        4 表达式树的拼装链接
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="article-footer">
+                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2018-03-18</span>
+                    <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;contione</span>
+                    <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">C#</a></span>
+                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
+                    <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                </div>
+            </div>
+        </div>
+        <!--右边小栏目-->
+        <div class="blog-main-right">
+            <div class="blogerinfo shadow">
+                <div class="blogerinfo-figure">
+                    <img src="/images/Absolutely.jpg" alt="contione" />
+                </div>
+                <p class="blogerinfo-nickname">contione</p>
+                <p class="blogerinfo-introduce">一枚90后程序员，.NET开发工程师</p>
+                <p class="blogerinfo-location"><i class="fa fa-location-arrow"></i>&nbsp;湖北 - 武汉</p>
+                <hr />
+                <div class="blogerinfo-contact">
+                    <a target="_blank" title="QQ交流" href="javascript:layer.msg('启动QQ会话窗口')"><i class="fa fa-qq fa-2x"></i></a>
+                    <a target="_blank" title="给我写信" href="javascript:layer.msg('启动邮我窗口')"><i class="fa fa-envelope fa-2x"></i></a>
+                    <a target="_blank" title="新浪微博" href="javascript:layer.msg('转到你的微博主页')"><i class="fa fa-weibo fa-2x"></i></a>
+                    <a target="_blank" title="码云" href="https://github.com/ContioneWbt"><i class="fa fa-git fa-2x"></i></a>
+                </div>
+            </div>
+            <div></div><!--占位-->
+            <div class="blog-module shadow">
+                <div class="blog-module-title"><span class="layui-badge">热文排行</span></div>
+                <ul class="fa-ul blog-module-ul">
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="/Detail/Index">Web安全之跨站请求伪造CSRF</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="/Detail/Index">ASP.NET MVC 防范跨站请求伪造（CSRF）</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="/Detail/Index">常用正则表达式</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="/Detail/Index">EF CodeFirst数据迁移常用指令</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="/Detail/Index">浅谈.NET Framework基元类型</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="/Detail/Index">C#基础知识回顾-扩展方法</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="/Detail/Index">一步步制作时光轴（一）（HTML篇）</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="/Detail/Index">一步步制作时光轴（二）（CSS篇）</a></li>
+                </ul>
+            </div>
+            <div class="blog-module shadow">
+                <div class="blog-module-title"><span class="layui-badge">最近分享</span></div>
+                <ul class="fa-ul blog-module-ul">
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="http://pan.baidu.com/s/1c1BJ6Qc" target="_blank">Canvas</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="http://pan.baidu.com/s/1kVK8UhT" target="_blank">pagesize.js</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="https://pan.baidu.com/s/1mit2aiW" target="_blank">时光轴</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="https://pan.baidu.com/s/1nuAKF81" target="_blank">图片轮播</a></li>
+                </ul>
+            </div>
+            <div class="blog-module shadow">
+                <div class="blog-module-title"><span class="layui-badge layui-bg-green">一路走来</span></div>
+                <dl class="footprint">
+                    <dt>2018年03月12日</dt>
+                    <dd>新增留言回复功能！人人都可参与回复！</dd>
+                    <dt>2018年03月10日</dt>
+                    <dd>不落阁2.0基本功能完成，正式上线！</dd>
+                    <dt>2018年03月09日</dt>
+                    <dd>新增文章搜索功能！</dd>
+                    <dt>2018年02月25日</dt>
+                    <dd>QQ互联接入网站，可QQ登陆发表评论与留言！</dd>
+                </dl>
+            </div>
+            <div class="blog-module shadow">
+                <div class="blog-module-title"><span class="layui-badge layui-bg-green">后台记录</span></div>
+                <dl class="footprint">
+                    <dt>2018年03月16日</dt>
+                    <dd>分页新增页容量控制</dd>
+                    <dt>2018年03月12日</dt>
+                    <dd>新增管家提醒功能</dd>
+                    <dt>2018年03月10日</dt>
+                    <dd>新增Win10快捷菜单</dd>
+                </dl>
+            </div>
+            <div class="blog-module shadow article-music">
+                <div class="blog-module-title"><span class="layui-badge">本文配乐</span></div>
+                <div id="musicplayer" class="aplayer"></div>
+            </div>
+            <div class="blog-module shadow">
+                <div class="blog-module-title"><span class="layui-badge layui-bg-green">友情链接</span></div>
+                <ul class="blogroll">
+                    <li><a target="_blank" href="http://www.layui.com/" title="Layui">Layui</a></li>
+                    <li><a target="_blank" href="http://www.pagemark.cn/" title="页签">页签</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+@section scripts
+{
+<script src="/APlayer/dist/custom.js"></script>
+}

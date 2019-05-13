@@ -1,0 +1,281 @@
+﻿
+@{
+    ViewBag.Title = "Check";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@section styles{
+    <!-- 比较好用的代码着色插件 -->
+    <link href="/css/prettify.css" rel="stylesheet" />
+    <!-- 本页样式表 -->
+    <link href="/css/detail.css" rel="stylesheet" />
+}
+<!-- 导航 -->
+<nav class="blog-nav layui-header">
+    <div class="blog-container">
+        <!-- QQ互联登陆 -->
+        <a href="javascript:;" class="blog-user">
+            <i class="fa fa-qq"></i>
+        </a>
+        <a href="javascript:;" class="blog-user layui-hide">
+            <img src="/images/Absolutely.jpg" alt="Absolutely" title="Absolutely" />
+        </a>
+        <!-- 不落阁 -->
+        <a class="blog-logo" href="/Home/Index">Contione</a>
+        <!-- 导航菜单 -->
+        <!-- 导航菜单 -->
+        @Html.Partial("_Title", "文章专栏")
+        <!-- 手机和平板的导航开关 -->
+        <a class="blog-navicon" href="javascript:;">
+            <i class="fa fa-navicon"></i>
+        </a>
+    </div>
+</nav>
+<!-- 主体（一般只改变这里的内容） -->
+<div class="blog-body">
+    <div class="blog-container">
+        <blockquote class="layui-elem-quote sitemap layui-breadcrumb shadow">
+            <a href="/Home/index" title="网站首页">网站首页</a>
+            <a href="/Article/Index" title="文章专栏">文章专栏</a>
+            <a><cite>【责任链Chain of Responsibility模式】</cite></a>
+        </blockquote>
+        <div class="blog-main">
+            <div class="blog-main-left">
+                <!-- 文章内容（使用Kingeditor富文本编辑器发表的） -->
+                <div class="article-detail shadow">
+                    <div class="article-detail-title">
+                        关于         【责任链Chain of Responsibility模式】那些事
+                    </div>
+                    <div class="article-detail-info">
+                        <span>编辑时间：2018/6/23 10:30:22</span>
+                        <span>作者：Contione</span>
+                        <span>浏览量：12+</span>
+                    </div>
+                    <div class="article-detail-content">
+                        @*<p style="text-align:center;">
+                                <strong><span style="font-size:18px;">小赌为快</span></strong>
+                            </p>
+                            <p style="text-align:center;">
+                                <strong>
+                                    <span style="font-size:18px;">
+                                        <br />
+                                    </span>
+                                </strong>
+                            </p>*@
+                        @*<p style="text-align:center;">
+                                <img src="/Article/正则.png" width="100%" height="auto" title="pagesize演示" alt="pagesize演示" />
+                            </p>*@
+                        <p style="text-align:left;">
+                            <br />
+                        </p>
+                        <hr />
+                        <p>
+                            <br />
+                        </p>
+                        <div style="text-align:center;">
+                            &nbsp; &nbsp; <span style="color:#EE33EE;">前言</span>：如果你还没有了解行为型设计模式赶紧看看吧！
+                        </div>
+                        <hr />
+                        <p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;在业务逻辑处理过程中可能有很多环节，在这个环节中有的可能最终处理有的可能中途处理一点，为了保证环节可自由配置(定制)把每个环节独立成一个类，环节和环节自由传递，通过上端去指定它的问题。
+                        </p>
+                        <hr />
+                        <p>
+                            &nbsp; &nbsp; <span style="color:#EE33EE;"> 责任链模式的结构和角色：</span>
+                        </p>
+                        <p style="text-align:center;">
+                           
+                            <img src="/images/设计模式/ChainofResponsibility.png" width="100%" height="auto" title="pagesize演示" alt="pagesize演示" />
+                        </p>
+                        <hr />
+                        <p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;抽象处理者(Handler)角色：
+定义出一个处理请求的接口。如果需要，接口可以定义 出一个方法以设定和返回对下家的引用。
+具体处理者(ConcreteHandler)角色：
+具体处理者接到请求后，可以选择将请求处理掉，或者将请求传给下家。由于具体处理者持有对下家的引用，因此，如果需要，具体处理者可以访问下家。
+                        </p>
+                        <hr />
+                        <p>
+                            &nbsp; &nbsp; <span style="color:#EE33EE;"> 责任链模式的实现：</span>
+                        </p>
+                        <hr />
+                        <p>
+                            &nbsp; &nbsp; 在生活中，公司部门举办活动需要申请金费，如果金费<=1000,部门经理就可以批准发放，如果金额超过1000而<=5000,部门经理无权力批准，副总经理可以批准发放，如果金额超过5000而<=10000,副总经理没有权力批准，此时只有总经理可以批准，而超过10000，就要就行会议决定。对于这样的需求，每个角色的责任是不一样的，如果使用传统的方式，可能是写个if多条件判断，可以满足现有的需要，但是后面增加新的角色赋予责任，就需要改变if结构判断，违背设计原则中的对扩展开发，对修改关闭原则。使用责任链模式可以很方便的扩展。
+                        </p>
+                      
+<pre class="prettyprint linenums lang-js">
+
+    /// 行为请求    
+public class BehaviourRequest    
+{    
+    /// 金额       
+    public double Money { get; set; }    
+    
+    /// 活动名称      
+    public string ActiveName { get; set; }    
+    
+    public BehaviourRequest(double money, string activename)     
+    {    
+        this.Money = money;    
+        this.ActiveName = activename;    
+    }    
+}    
+</pre>
+                        <p>
+                            <br />
+                        </p>
+
+                        <pre class="prettyprint linenums lang-js">
+        /// 部门经理      
+public class ManagerRole:RoleAbstract    
+{    
+    public ManagerRole(string name) : base(name) { }    
+    
+    public override void Behaviour(BehaviourRequest request)    
+    {    
+        if (request.Money <= 1000)    
+        {    
+            Console.WriteLine("{0}的请求批准得到{1}批准,需要金额：{2}", request.ActiveName,this.name, request.Money);    
+        }    
+        else if (NextRole != null)    
+        {    
+            Console.WriteLine("{0}无权力批准，给上级{0}处理！", this.name, NextRole.name);    
+            NextRole.Behaviour(request);    
+        }    
+    }    
+}   
+                        </pre>
+
+                        <pre class="prettyprint linenums lang-js">
+        /// 副总经理角色    
+public class PresidentRole:RoleAbstract    
+{    
+    public PresidentRole(string name) : base(name) { }    
+    
+    public override void Behaviour(BehaviourRequest request)    
+    {    
+        if (request.Money <= 5000)     
+        {    
+            Console.WriteLine("{0}的请求批准得到{1}批准,需要金额：{2}", request.ActiveName, this.name, request.Money);    
+        }    
+        else if (NextRole != null)    
+        {    
+            Console.WriteLine("{0}无权力批准，给上级{0}处理！", this.name, NextRole.name);    
+            NextRole.Behaviour(request);    
+        }    
+    }    
+}    
+
+ 
+                        </pre>
+                        <pre class="prettyprint linenums lang-js">
+ 
+        /// 总经理  
+public class PresidengtRole:RoleAbstract    
+{    
+    public PresidengtRole(string name) : base(name) { }    
+    
+    public override void Behaviour(BehaviourRequest request)    
+    {    
+        if (request.Money <= 10000)    
+        {    
+            Console.WriteLine("{0}的请求批准得到{1}批准,需要金额：{2}", request.ActiveName, this.name, request.Money);    
+        }    
+        else     
+        {    
+            Console.WriteLine("这个活动需要进行会议讨论决定");    
+        }    
+    }    
+}   
+ 
+                        </pre>
+                        <pre class="prettyprint linenums lang-js"> 
+     /// C#设计模式-责任链模式   
+class Program    
+{    
+    static void Main(string[] args)    
+    {    
+        //活动信息    
+        BehaviourRequest behavior = new BehaviourRequest(10000, "部门招商活动");    
+            
+        //对该活动的审批可能涉及的角色    
+        RoleAbstract manager = new ManagerRole("部门经理");    
+        RoleAbstract vp = new PresidentRole("副总经理");    
+        RoleAbstract pre = new PresidengtRole("总经理");    
+    
+        //设置责任链    
+        manager.NextRole = vp;    
+        vp.NextRole = pre;    
+    
+        //请求处理    
+        manager.Behaviour(behavior);    
+    }    
+}    
+
+ 
+                        </pre>
+                        &nbsp;&nbsp; &nbsp;<span style="color:#EE33EE;">今天就分享到这里啦！</span>
+                        <p>
+                            &nbsp; &nbsp; 点赞Contione：<a href="" target="_blank"><span style="color:#337FE5;">点击前往</span></a>@*&nbsp; &nbsp; 完整演示请看后台：<span><a href="" target="_blank"><span style="color:#337FE5;">点击前往</span></a></span>&nbsp; &nbsp; 下载地址：<a href="https://pan.baidu.com/s/1kVK8UhT" target="_blank"><span style="color:#337FE5;">点击前往</span></a>*@
+                        </p>
+                        <hr />
+                        &nbsp; &nbsp; 出自：Contione
+                        <p>
+                            &nbsp; &nbsp; 地址：<a href="http://www.contione.cn" target="_blank">www.contione.cn</a>
+                        </p>
+                        <p>
+                            &nbsp; &nbsp; 转载请注明出处！<img src="" border="0" alt="" />@*http://www.lyblogs.cn/kindeditor/plugins/emoticons/images/0.gif*@
+                        </p>
+                        <p>
+                            <br />
+                        </p>
+                    </div>
+                </div>
+                <!-- 评论区域 -->
+                <div class="blog-module shadow" style="box-shadow: 0 1px 8px #a6a6a6;">
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-bottom:0">
+                        <legend>来说两句吧</legend>
+                        <div class="layui-field-box">
+                            <form class="layui-form blog-editor" action="">
+                                <div class="layui-form-item">
+                                    <textarea name="editorContent" lay-verify="content" id="remarkEditor" placeholder="请输入内容" class="layui-textarea layui-hide"></textarea>
+                                </div>
+                                <div class="layui-form-item">
+                                    <button class="layui-btn" lay-submit="formRemark" lay-filter="formRemark">提交评论</button>
+                                </div>
+                            </form>
+                        </div>
+                    </fieldset>
+                    <div class="blog-module-title">最新评论</div>
+                    <ul class="blog-comment">
+                        <li>
+                            <div class="comment-parent">
+                                <img src="/images/Absolutely.jpg" alt="absolutely" />
+                                <div class="info">
+                                    <span class="username">Contione</span>
+                                    <span class="time">2017-03-18 18:46:06</span>
+                                </div>
+                                <div class="content">
+                                    我为大家做了模拟评论功能！还有，这个评论功能也可以改成和留言一样，但是目前没改，有兴趣可以自己改
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @Html.Partial("_Right")
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<!--遮罩-->
+<div class="blog-mask animated layui-hide"></div>
+
+@section scripts{
+    <!-- 比较好用的代码着色插件 -->
+    <script src="/js/prettify.js"></script>
+    <!-- 本页脚本 -->
+    <script src="/js/detail.js"></script>
+}
+
