@@ -1,6 +1,6 @@
 using System;
 
-namespace H_Blog.Models
+namespace ProductManagement.Models
 {
     public class ErrorViewModel
     {
