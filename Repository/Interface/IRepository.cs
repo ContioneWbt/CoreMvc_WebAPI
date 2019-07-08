@@ -12,6 +12,8 @@ namespace Repository.Interface
         bool IsExist(Expression<Func<T, bool>> exp);
         IQueryable<T> Find(Expression<Func<T, bool>> exp = null);
 
+        IQueryable<T> FindAll(Expression<Func<T, bool>> exp = null);
+
         IQueryable<T> Find(int pageindex = 1, int pagesize = 10, string orderby = "",
             Expression<Func<T, bool>> exp = null);
 

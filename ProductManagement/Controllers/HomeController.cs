@@ -50,7 +50,7 @@ namespace ProductManagement.Controllers
             #endregion
 
             #region 查询数据
-            var result = _Repository.Find(p => p.Description == "备注信息").ToList(); 
+            var result = _Repository.FindAll();//Find(p => p.Description == "备注信息").ToList(); 
             #endregion
 
             return View();

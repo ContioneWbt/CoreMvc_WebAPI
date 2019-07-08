@@ -12,26 +12,7 @@
     <link href="/css/detail.css" rel="stylesheet" />
 }
 <!-- 导航 -->
-<nav class="blog-nav layui-header">
-    <div class="blog-container">
-        <!-- QQ互联登陆 -->
-        <a href="javascript:;" class="blog-user">
-            <i class="fa fa-qq"></i>
-        </a>
-        <a href="javascript:;" class="blog-user layui-hide">
-            <img src="/images/Absolutely.jpg" alt="Absolutely" title="Absolutely" />
-        </a>
-        <!-- 不落阁 -->
-        <a class="blog-logo" href="/Home/Index">Contione</a>
-        <!-- 导航菜单 -->
-        <!-- 导航菜单 -->
-        @Html.Partial("_Title", "文章专栏")
-        <!-- 手机和平板的导航开关 -->
-        <a class="blog-navicon" href="javascript:;">
-            <i class="fa fa-navicon"></i>
-        </a>
-    </div>
-</nav>
+@Html.Partial("_Title", "文章专栏")
 <!-- 主体（一般只改变这里的内容） -->
 <div class="blog-body">
     <div class="blog-container">
@@ -40,7 +21,7 @@
             <a href="/Article/Index" title="文章专栏">文章专栏</a>
             <a><cite>关于         【正则】表达式那些事</cite></a>
         </blockquote>
-        <div class="blog-main">
+        <div class="blog-main" style=" margin-top: 15px;">
             <div class="blog-main-left">
                 <!-- 文章内容（使用Kingeditor富文本编辑器发表的） -->
                 <div class="article-detail shadow">
@@ -221,7 +202,7 @@
                             &nbsp; &nbsp; 转载请注明出处！<img src="" border="0" alt="" />@*http://www.lyblogs.cn/kindeditor/plugins/emoticons/images/0.gif*@
                         </p>
                         <p>
-                        <br />
+                            <br />
                         </p>
                     </div>
                 </div>

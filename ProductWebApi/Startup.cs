@@ -65,10 +65,10 @@ namespace ProductWebApi
             app.UseCors(builder => builder.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
-
+            //允许访问静态文件
+            app.UseStaticFiles();
             app.UseMvc(routes =>
             {
-
                 routes.MapRoute(
                     name: "default",
                     template: "api/{controller=Home}/{action=Index}/{id?}");

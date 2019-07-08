@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Z.EntityFramework.Plus;
 
 namespace Repository
 {
@@ -26,6 +27,15 @@ namespace Repository
         public IQueryable<T> Find(Expression<Func<T, bool>> exp = null)
         {
             return Filter(exp);
+        }
+
+         /// <summary>
+        /// 根据过滤条件，获取记录
+        /// </summary>
+        /// <param name="exp">The exp.</param>
+        public IQueryable<T> FindAll(Expression<Func<T, bool>> exp = null)
+        {
+            return Filter(o=>true);
         }
 
         public bool IsExist(Expression<Func<T, bool>> exp)
@@ -118,12 +128,12 @@ namespace Repository
         /// <param name="entity">The entity.</param>
         public void Update(Expression<Func<T, bool>> where, Expression<Func<T, T>> entity)
         {
-            //_context.Set<T>().Where(where).Update(entity);
+            _context.Set<T>().Where(where).Update(entity);
         }
 
         public virtual void Delete(Expression<Func<T, bool>> exp)
         {
-            //_context.Set<T>().Where(exp).Delete();
+            _context.Set<T>().Where(exp).Delete();
         }
 
         public void Save()
