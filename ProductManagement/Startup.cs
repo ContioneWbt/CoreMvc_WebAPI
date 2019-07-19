@@ -33,15 +33,17 @@ namespace ProductManagement
                 options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddMvc(option =>
+            services .AddMvc(option =>
             {
                 option.ModelBinderProviders.Insert(0, new JsonBinderProvider());
+
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddMemoryCache();
-            services.AddOptions();
-            //services.AddTransient<App.Product.ProductManger>();
-            services.AddDbContext<ProductManageDBContext>(options =>
+
+            services.AddMemoryCache()
+                    .AddOptions()
+                    .AddDbContext<ProductManageDBContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ProductManageDBContext")));
+
             return new AutofacServiceProvider(AutofacExt.InitAutofac(services));
         }
 
@@ -58,6 +60,7 @@ namespace ProductManagement
             }
 
             app.UseStaticFiles();
+
             app.UseCookiePolicy();
 
             app.UseMvcWithDefaultRoute();
