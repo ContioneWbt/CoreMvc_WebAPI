@@ -18,8 +18,8 @@ namespace App
         public static IContainer InitAutofac(IServiceCollection services)
         {
             var builder = new ContainerBuilder();
-            services.AddScoped(typeof(ICate), typeof(PayCate));
-            services.AddScoped(typeof(IUnitWork), typeof(UnitWork));
+            //services.AddScoped(typeof(ICate), typeof(PayCate));
+            //services.AddScoped(typeof(IUnitWork), typeof(UnitWork));
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             //注册app层
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly());

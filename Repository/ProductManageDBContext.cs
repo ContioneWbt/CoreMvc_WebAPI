@@ -16,5 +16,7 @@ namespace Repository
         public virtual DbSet<UserNO> UserNO { get; set; }
 
         public virtual DbSet<Product> Products { get; set; }
+
+        public virtual DbSet<Notification> Notification { get; set; }
     }
 }

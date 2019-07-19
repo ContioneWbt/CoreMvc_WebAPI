@@ -39,5 +39,9 @@ namespace App
         {
             return Repository.FindSingle(u => u.Id == id);
         }
+        public List<T> GetAllEntity()
+        {
+            return Repository.FindAll(o => !string.IsNullOrWhiteSpace(o.Id)).ToList();
+        }
     }
 }

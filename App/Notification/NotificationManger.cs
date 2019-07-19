@@ -4,16 +4,16 @@ using System.Text;
 using Repository.Domain;
 using Repository.Interface;
 
-namespace App.Product
+namespace App.NotificationManger
 {
-    public class NotificationManger : BaseApp<UserInfo>
+    public class NotificationManger : BaseApp<Notification>
     {
 
         /// <summary>
         /// 执行添加操作
         /// </summary>
         /// <param name="user"></param>
-        public void Add(UserInfo user)
+        public void Add(Notification user)
         {
             if (string.IsNullOrEmpty(user.Id))
             {
@@ -22,7 +22,7 @@ namespace App.Product
             Repository.Add(user);
         }
 
-        public NotificationManger(IRepository<UserInfo> repository) : base(repository)
+        public NotificationManger(IRepository<Notification> repository) : base(repository)
         {
 
         }

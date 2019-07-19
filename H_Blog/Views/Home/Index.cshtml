@@ -1,4 +1,6 @@
-﻿
+﻿@using Infrastructure
+@using Repository.Domain
+@model List<Notification> 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -19,10 +21,14 @@
         <div class="home-tips shadow">
             <i style="float:left;line-height:17px;" class="fa fa-volume-up"></i>
             <div class="home-tips-container">
-                <span style="color: #009688">偷偷告诉大家，本博客的后台管理也正在制作，为大家准备了游客专用账号！</span>
-                <span style="color: red">网站新增留言回复啦！使用QQ登陆即可回复，人人都可以回复！</span>
-                <span style="color: red">如果你觉得网站做得还不错，来Fly社区点个赞吧！<a href="http://fly.layui.com/case/2018/" target="_blank" style="color:#01AAED">点我前往</a></span>
-                <span style="color: #009688">contione &nbsp;—— &nbsp;一个.NET程序员的个人博客，新版网站采用Layui为前端框架，目前正在建设中！</span>
+                @if (Model.IsNoContent())
+                {
+                    foreach (var item in Model)
+                    {
+
+                        @Html.Raw($"<span style='color:{item.Color}'>{item.Title}{item.Link}</span>");
+                    }
+                }
             </div>
         </div>
         <!--左边文章列表-->
@@ -150,10 +156,6 @@
                     <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
                 </div>
             </div>
-            @*<div id="layer-photos-demo" class="layer-photos-demo">
-                <img layer-pid="图片id，可以不写" layer-src="大图地址" src="缩略图" alt="图片名">
-                <img layer-pid="图片id，可以不写" layer-src="大图地址" src="缩略图" alt="图片名">
-            </div>*@
             <div class="article shadow">
                 <div class="article-left">
                     <img layer-pid="图片id，可以不写" layer-src="/images/cover/201703181909057125.jpg" src="/images/cover/201703181909057125.jpg" alt="泛型！">

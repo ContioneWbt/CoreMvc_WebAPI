@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Repository.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Text;
 namespace Repository.Domain
 {
     [Table("Notification")]
-    public partial class Notification
+    public partial class Notification : Entity
     {
         public Notification()
         {

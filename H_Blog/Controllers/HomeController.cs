@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using App.NotificationManger;
 using H_Blog.Models.Music;
 using Microsoft.AspNetCore.Mvc;
+using Repository.Domain;
+using Repository.Interface;
 
 namespace H_Blog.Controllers
 {
     public class HomeController : Controller
     {
+        private IRepository<Notification> _Repository;
+        private readonly NotificationManger _appNoticeManger;
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            return View(_appNoticeManger.GetAllEntity());
         }
+
         [HttpGet]
         public JsonResult GetMusicList()
         {
@@ -25,6 +31,12 @@ namespace H_Blog.Controllers
             };
             //[new Random().Next(3)]
             return Json(musiclist);
+        }
+
+        public HomeController(IRepository<Notification> repository, NotificationManger app)
+        {
+            _Repository = repository;
+            _appNoticeManger = app;
         }
     }
 }
