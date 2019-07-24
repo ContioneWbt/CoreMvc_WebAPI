@@ -12,12 +12,15 @@ namespace H_Blog.Controllers
 {
     public class HomeController : Controller
     {
-        private IRepository<Notification> _Repository;
-        private readonly NotificationManger _appNoticeManger;
+      
         // GET: Home
         public ActionResult Index()
         {
-            return View(_appNoticeManger.GetAllEntity());
+            return View(new Tuple<List<Notification>, List<Article>>
+                ( 
+                    _appNoticeManger.GetAllEntity(), 
+                    _articleManger.GetAllEntity().OrderBy(o=>o.Sort).ToList())
+                );
         }
 
         [HttpGet]
@@ -33,10 +36,18 @@ namespace H_Blog.Controllers
             return Json(musiclist);
         }
 
-        public HomeController(IRepository<Notification> repository, NotificationManger app)
+
+        #region IOC_DI
+
+        private readonly ArticleManger _articleManger;
+        private readonly NotificationManger _appNoticeManger;
+
+        public HomeController(NotificationManger app, ArticleManger articleManger)
         {
-            _Repository = repository;
             _appNoticeManger = app;
+            _articleManger = articleManger;
         }
+
+        #endregion
     }
 }

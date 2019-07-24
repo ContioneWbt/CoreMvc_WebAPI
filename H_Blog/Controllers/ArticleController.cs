@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using App.NotificationManger;
 using Microsoft.AspNetCore.Mvc;
+using Repository.Domain;
 
 namespace H_Blog.Controllers
 {
@@ -11,7 +13,11 @@ namespace H_Blog.Controllers
         // GET: Article
         public ActionResult Index()
         {
-            return View();
+            return View(new Tuple<List<Notification>, List<Article>>
+                (
+                    _appNoticeManger.GetAllEntity(),
+                    _articleManger.GetAllEntity().OrderBy(o => o.Sort).ToList())
+                );
         }
 
         public ActionResult Regex_Artile()
@@ -39,5 +45,18 @@ namespace H_Blog.Controllers
 
             return View();
         }
+
+        #region IOC_DI
+
+        private readonly ArticleManger _articleManger;
+        private readonly NotificationManger _appNoticeManger;
+
+        public ArticleController(NotificationManger app, ArticleManger articleManger)
+        {
+            _appNoticeManger = app;
+            _articleManger = articleManger;
+        }
+
+        #endregion
     }
 }
