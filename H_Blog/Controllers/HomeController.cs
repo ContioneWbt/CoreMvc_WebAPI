@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using App.NotificationManger;
 using H_Blog.Models.Music;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Domain;
 using Repository.Interface;
@@ -19,7 +20,7 @@ namespace H_Blog.Controllers
             return View(new Tuple<List<Notification>, List<Article>>
                 ( 
                     _appNoticeManger.GetAllEntity(), 
-                    _articleManger.GetAllEntity().OrderBy(o=>o.Sort).ToList())
+                    _articleManger.GetAllEntity().OrderBy(o=>o.Sort).Take(6).ToList())
                 );
         }
 

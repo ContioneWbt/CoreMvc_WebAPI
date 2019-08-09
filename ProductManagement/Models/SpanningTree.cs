@@ -68,17 +68,6 @@ namespace ProductManagement.Models
         }
 
         /// <summary>
-        /// init tree find top menu
-        /// </summary>
-        /// <returns></returns>
-        private static List<NodelModel> InitTree()
-        {
-            List<NodelModel> model = GetlistTree();
-
-            return model;
-        }
-
-        /// <summary>
         /// 菜单数据模拟
         /// </summary>
         /// <returns></returns>
@@ -90,12 +79,12 @@ namespace ProductManagement.Models
                 new NodelModel() { id=30, pid=0, title="系统组件库",font="larry-icon",icon="larry-chanpinC",url="/Home/Console", param="",condition="", spread=false, },
                 new NodelModel() { id=83, pid=0, title="UI场景特例",font="larry-icon",icon="larry-yemiankuangjia_o",url="/Home/Console", param="",condition="", spread=false, },
                 new NodelModel() { id=160, pid=0, title="常用模板系列",font="larry-icon",icon="larry-changyongshili",url="/Home/Console", param="",condition="", spread=false, },
-                new NodelModel() { id=2, pid=1, title="后台首页",font="larry-icon",icon="larry-shouye2",url="/Home/Console", param="",condition="", spread=false, },
-                new NodelModel() { id=3, pid=1, title="【产品管理】",font="larry-icon",icon="larry-shouye4",url="/Home/Console", param="",condition="", spread=false, },
-                new NodelModel() { id=4, pid=1, title="【用户管理】",font="larry-icon",icon="larry-kongzhitaishouye",url="/Home/Console", param="",condition="", spread=false, },
-                new NodelModel() { id=5, pid=1, title="【权限管理】",font="larry-icon",icon="larry-shouye1",url="/Home/Console", param="",condition="", spread=false, },
-                new NodelModel() { id=6, pid=1, title="【菜单管理】",font="larry-icon",icon="larry-caidanguanli3",url="/Home/MenuCheck", param="",condition="", spread=false, },
-                new NodelModel() { id=7, pid=1, title="【登录页】",font="larry-icon",icon="larry-shouye1",url="/Login/Index", param="",condition="", spread=false, },
+                new NodelModel() { id=2, pid=1, title="后台首页",font="larry-icon",icon="larry-qunfengzhuye",url="/Home/Console", param="",condition="", spread=false, },
+                new NodelModel() { id=3, pid=1, title="文章管理",font="larry-icon",icon="larry-wenzhang",url="/Home/Console", param="",condition="", spread=false, },
+                new NodelModel() { id=4, pid=1, title="发布文章",font="larry-icon",icon="larry-kongzhitaishouye",url="/Home/Console", param="",condition="", spread=false, },
+                new NodelModel() { id=5, pid=1, title="权限管理",font="larry-icon",icon="larry-quanxianguanli1",url="/Home/Console", param="",condition="", spread=false, },
+                new NodelModel() { id=6, pid=1, title="菜单管理",font="larry-icon",icon="larry-caidanguanli3",url="/Home/MenuCheck", param="",condition="", spread=false, },
+                new NodelModel() { id=7, pid=1, title="登录页",font="larry-icon",icon="larry-denglu3",url="/Login/Index", param="",condition="", spread=false, },
             };
             return list;
         }
